@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fa" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورود/ثبت نام</title>
+    <link rel="stylesheet" href="./assets/css/style_login_signup.css">
+    <link rel="icon" type="image/png" href="./assets/images/WebArt1.png">
+    <link rel="apple-touch-icon" href="./assets/images/WebArt1.png">
+</head>
+<body class="account-page auth-layout">
+
+    <!-- ===== برند / لایه ثابت ===== -->
+    <section class="auth-brand">
+      <div class="brand-content">
+        <img src="./assets/images/WebArt1.png" alt="لوگو" class="auth-logo-img">
+        <h1>خوش آمدید 👋</h1>
+        <p>ورود امن و سریع با شماره موبایل</p>
+      </div>
+    </section>
+  
+    <!-- ===== فرم / لایه Step-Based ===== -->
+    <section class="auth-flow">
+      <div class="flow-container">
+  
+        <!-- مرحله شماره موبایل -->
+        <form class="step step-phone active">
+          <div class="input-group">
+            <input 
+              type="tel"
+              id="phone"
+              inputmode="numeric"
+              autocomplete="tel"
+              maxlength="11"
+              placeholder=" "
+              required
+            />
+            <label for="phone">شماره موبایل</label>
+            <span class="input-hint">مثال: 09123456789</span>
+          </div>
+  
+          <button type="submit" class="btn-auth">ارسال کد تایید</button>
+        </form>
+  
+        <!-- مرحله کد تایید OTP -->
+        <form class="step step-code">
+          <div class="otp-group">
+            <input maxlength="1" type="text">
+            <input maxlength="1" type="text">
+            <input maxlength="1" type="text">
+            <input maxlength="1" type="text">
+          </div>
+
+          <div class="otp-timer">
+            <span id="timerText">
+              ارسال مجدد کد تا <strong id="countdown">60</strong> ثانیه
+            </span>
+          
+            <button id="resendBtn" class="resend-btn" disabled>
+              ارسال مجدد کد
+            </button>
+          </div>
+          <p dir="rtl">رمز پیش فرض: 1234</p>
+          <button type="submit" class="btn-auth">تایید و ورود</button>
+        </form>
+  
+        <!-- مرحله موفقیت -->
+        <div class="step step-success">
+          <h2 dir="rtl">ورود موفقیت‌آمیز بود ✅</h2>
+          <p dir="rtl">به پنل خود خوش آمدید! ...</p>
+        </div>
+  
+      </div>
+    </section>
+
+    <div id="toast-container"></div>
+
+    <script src="./assets/js/script_login_signup.js"></script>
+</body>
+</html>

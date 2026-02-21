@@ -1,0 +1,333 @@
+/* =========================================================
+   متغیرهای اصلی رنگ و تم
+========================================================= */
+:root { 
+  --primary: #301afa;
+  --text: #333;
+  --border: #e0e0e0;
+  --muted: #f9f9f9;
+}
+
+/* =========================================================
+   تنظیمات عمومی سایت
+========================================================= */
+body {
+  margin: 0;
+  font-family: 'Vazirmatn', sans-serif;
+  background: #fff;
+  color: var(--text);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Toast Notification ===== */
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  direction: rtl;
+  min-width: 260px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  animation: slideIn .3s ease, fadeOut .3s ease 3s forwards;
+  box-shadow: 0 10px 25px rgba(0,0,0,.15);
+}
+
+.toast.success { background: #2ecc71; }
+.toast.error   { background: #e74c3c; }
+.toast.warning { background: #f39c12; }
+
+.toast span {
+  flex: 1;
+  margin-right: 10px;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; transform: translateX(20px); }
+}
+
+/* =========================================================
+   لایوت اصلی صفحه ورود (Step-Based Layout)
+   دسکتاپ: دو ستون (برند + فرم)
+========================================================= */
+.auth-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  height: 100vh;
+}
+
+/* =========================================================
+   بخش برند (سمت چپ)
+========================================================= */
+.auth-brand {
+  background: linear-gradient(135deg, #301afa, #5b4bff);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-content {
+  max-width: 380px;
+  text-align: center;
+}
+
+.brand-content h1 {
+  margin: 15px 0 10px;
+  font-size: 1.6rem;
+}
+
+.brand-content p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.auth-logo-img{
+  width: 300px;
+}
+/* =========================================================
+   بخش فرم (سمت راست)
+========================================================= */
+.auth-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.flow-container {
+  width: 100%;
+  max-width: 360px;
+}
+
+/* =========================================================
+   فرم مرحله‌ای (Step Based Form)
+========================================================= */
+.step {
+  display: none;
+  animation: fadeUp .4s ease;
+}
+
+.step.active {
+  display: block;
+}
+
+/* انیمیشن ظاهر شدن فرم */
+@keyframes fadeUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(15px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+/* =========================================================
+   ورودی‌ها با Floating Label
+========================================================= */
+.input-group {
+  position: relative;
+  margin-bottom: 22px;
+}
+
+.input-group input {
+  width: 95%;
+  padding: 14px 8px;
+  font-size: 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  transition: all .3s ease;
+  background: #fff;
+}
+
+/* لیبل شناور */
+.input-group label {
+  position: absolute;
+  right: 12px;
+  top: 35%;
+  transform: translateY(-50%);
+  font-size: 13px;
+  color: #888;
+  pointer-events: none;
+  transition: .3s ease;
+  background: #fff;
+  padding: 0 6px;
+}
+
+/* حالت فوکوس */
+.input-group input:focus {
+  border-color: var(--primary);
+}
+
+/* حرکت لیبل هنگام تایپ */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+  top: -6px;
+  font-size: 11px;
+  color: var(--primary);
+}
+
+/* متن راهنما زیر input */
+.input-hint {
+  font-size: 11px;
+  margin-top: 6px;
+  display: block;
+  color: #999;
+  direction: rtl;
+}
+
+/* حالت خطا */
+.input-group.error input { border-color: #e74c3c; }
+.input-group.error label { color: #e74c3c; }
+.input-group.error .input-hint { color: #e74c3c; }
+
+/* =========================================================
+   دکمه اصلی ورود / ثبت‌نام
+========================================================= */
+.btn-auth {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .3s;
+}
+
+.btn-auth:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(48,26,250,.25);
+}
+
+.btn-auth:disabled {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   OTP Input Group
+========================================================= */
+.otp-group {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.otp-group input {
+  width: 48px;
+  height: 52px;
+  text-align: center;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  outline: none;
+  transition: .3s;
+}
+
+.otp-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(48,26,250,.15);
+}
+
+/* ===== تایمر OTP ===== */
+.otp-timer {
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 13px;
+  color: #666;
+}
+
+.otp-timer strong {
+  color: var(--primary);
+}
+
+/* دکمه ارسال مجدد */
+.resend-btn {
+  margin-top: 8px;
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 13px;
+  cursor: pointer;
+  opacity: .5;
+  transition: .3s;
+}
+
+.resend-btn:enabled {
+  opacity: 1;
+}
+
+.resend-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* =========================================================
+   📱 ریسپانسیو موبایل و تبلت
+   (بدون تغییر ظاهر دسکتاپ)
+========================================================= */
+
+/* تبلت و موبایل */
+@media (max-width: 992px) {
+
+  /* تبدیل لایوت دو ستونه به تک ستون */
+  .auth-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* برند بالا، فرم پایین */
+  .auth-brand {
+    min-height: 35vh;
+    padding: 30px 20px;
+  }
+
+  .auth-flow {
+    padding: 30px 15px;
+  }
+}
+
+/* موبایل */
+@media (max-width: 576px) {
+
+  .brand-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .brand-content p {
+    font-size: .9rem;
+  }
+
+  .flow-container {
+    max-width: 100%;
+  }
+
+  .input-group input {
+    width: 100%;
+  }
+}
